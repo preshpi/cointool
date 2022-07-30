@@ -94,6 +94,7 @@ function Navbar() {
             </div> 
 
                             {/* Navbar ends */}
+                            
             <div ref={howItWorks} className="m-5 relative  overflow-hidden ">
             <div class="max-w-[517px] mx-auto text-center">
                 <small class="tag text-red-500 tracking-wider dark:text-red">APPLICATION</small> 

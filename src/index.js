@@ -11,7 +11,7 @@ ReactDOM.render(
     <ThemeProvider>
       <body className="bg-white dark:bg-black transition-all">
         <main>
-          <div className="absolute w-full right-0 top-0">
+          <div  className="absolute w-full right-0 top-0">
             <Navbar />
           </div>
           <App />

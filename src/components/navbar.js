@@ -1,5 +1,5 @@
 import React from 'react'
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import ScrollToTop from './ScrollToTop';
 import { FiTwitter } from 'react-icons/fi';
 import { TbBrandTelegram } from 'react-icons/tb';
@@ -12,7 +12,8 @@ import { BiUserCircle } from 'react-icons/bi';
 import { MdOutlineStorefront } from 'react-icons/md';
 import { BsLaptop } from 'react-icons/bs';
 import Toggle from './toggle';
-
+import Aos from 'aos';
+import "aos/dist/aos.css";
 
 function Navbar() {
     const howItWorks = useRef(null);
@@ -26,47 +27,55 @@ function Navbar() {
             behavior: "smooth",
         });
     };
+    useEffect(() => {
+        Aos.init({duration: 2000});
+    }, []);
+
   return (
     <div className="font-nunito dark:bg-body">
         <ScrollToTop/>
+
                          {/* Navbar */}
 
-            <div className="flex max-w-[1240px] mx-auto  lg:px-4 justify-between">
-                <div className="flex mt-1 lg:mt-4 mx-4 ">
-                    <img src={require('../images/logo.svg').default} height={40} width={40} className="md:block sm:hidden"/>
-                    <ul className="mx-2 hidden sm:flex sm:visible">
-                        <li onClick={() => scrollToSection(howItWorks)} className='my-6 mx-4 cursor-pointer'>How it works</li>
-                        <li onClick={() => scrollToSection(features)} className='my-6 mx-2 cursor-pointer'>Features</li>
-                        <li onClick={() => scrollToSection(tokenomics)} className='my-6 mx-2 cursor-pointer'>Tokenomics</li>
-                        <li onClick={() => scrollToSection(roadmaps)} className='my-6 mx-2 cursor-pointer'>Roadmaps</li>
-                    </ul>
-                </div>
+            
+            <div className="flex justify-between items-center max-w[1240]  px-6">
+                <div className="flex mt-3">
+                <img src={require('../images/logo.svg').default} height={37} width={37} className="md:block sm:hidden lg:mx-3 lg:animate-bounce cursor-pointer"/>
+                <div className="flex ">
+                    <ul className="hidden sm:flex sm:visible gap-2 lg:gap-3 mt-2">
 
-                <div className="flex mt-3 mx-3 gap-3">
-                <div className="grid lg:grid-cols-3 md:grid-rows-3 grid-cols-3 gap-3 cursor-pointer lg:gap-10 mx-2 my-6">
-                  <a href="#"><FiTwitter className="dark:text-gray text-grey hover:text-gray"/></a> 
-                  <a href="#"><TbBrandTelegram className="dark:text-gray text-grey hover:text-gray"/></a>
-                  <a href="#"><FiInstagram className="dark:text-gray text-grey hover:text-gray"/></a>
-                </div> 
-                <div className="flex mt-3 mb-2">
-                    <Toggle className="dark:text-gray"/>
+                    <li onClick={() => scrollToSection(howItWorks)} className=" cursor-pointer text-black dark:text-grey hover:text-blue dark:hover:text-white">How</li>
+                    <li onClick={() => scrollToSection(features)}  className="  cursor-pointer text-black dark:text-grey hover:text-blue dark:hover:text-white">Features</li>
+                    <li onClick={() => scrollToSection(tokenomics)} className=" cursor-pointer text-black dark:text-grey hover:text-blue dark:hover:text-white">Tokenomics</li>
+                    <li onClick={() => scrollToSection(roadmaps)} className="   cursor-pointer text-black dark:text-grey hover:text-blue dark:hover:text-white">Roadmaps</li>
+
+                </ul>  
                 </div>
                 
-                    <div className="md:grid grid-cols-2 ">
-                     <a href="#">
-                        <button className="bg-blue rounded mt-3 lg:mx-1  text-white font-semibold py-1 px-3 md:mx-3 mx-2 dark:hover:text-black">Lightpaper</button>
-                    </a>   
-                    <a href="#">
-                        <button className="dark:hover:text-white hover:text-black rounded mt-3 lg:mx-2 mx-2 text-bluefont-semibold  py-1 px-3  border-2 text-gray">Telegram</button>
-                    </a>   
-
                 </div>
 
+
+                <div className="flex mt-3 mx-3">
+                    <div className="grid lg:grid-cols-3  grid-cols-3 gap-4 cursor-pointer mt-4 lg:mt-2">
+                    <a href="#"><FiTwitter  className="dark:text-gray text-grey hover:text-gray dark:hover:text-white lg:text-xl transform transition-all hover:scale-125"/></a>
+                    <a href="#"><TbBrandTelegram  className="dark:text-gray text-grey hover:text-gray dark:hover:text-white lg:text-xl transform transition-all hover:scale-125"/></a>
+                    <a href="#"><FiInstagram  className="dark:text-gray text-grey hover:text-gray dark:hover:text-white lg:text-xl transform transition-all hover:scale-125"/></a>
+                    </div>
+                    <div className="mx-2">
+                        <Toggle className=" dark:text-gray"/>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-1 mt-2 lg:mt-0">
+                        <a href="#">
+                            <button className="bg-blue rounded mx-2 px-1 py-1 text-white font-semibold hover:text-black ">Lightpaper</button>
+                        </a>   
+                        <a href="#">
+                            <button className="rounded mx-2 px-1 py-1 dark:hover:text-white hover:text-black font-semibold border-2 text-gray">Telegram</button>
+                        </a>   
+
+                    </div>
                 </div>
-                                          
             </div>
-
-
             <div className="m-5 relative overflow-hidden ">
 
                 <div className="container-lg text-center relative  gradient rounded-lg bg-light dark:bg-middle ">
@@ -74,7 +83,7 @@ function Navbar() {
                     <p className="text-black dark:text-gray mt-6">Find, store and share your crypto in one place</p>
                     <h1 className="text-3xl mt-4 font-semibold dark:text-white">The <div class="text-blue inline text-4xl font-semibold">fully customisable</div> crypto trade and research tool</h1>
                     <p className="text-red mt-8">You won't need 5 tabs any longer</p>
-                    <div className="lg:m-28 m-10 hover:shadow-lg">
+                    <div className="m-10 hover:shadow-lg">
                             <img src={require('../images/lightimg.jpg').default} className=" rounded-lg " height={80} weight={80}/>
                     </div>
 
@@ -84,6 +93,7 @@ function Navbar() {
 
             </div> 
 
+                            {/* Navbar ends */}
             <div ref={howItWorks} className="m-5 relative  overflow-hidden ">
             <div class="max-w-[517px] mx-auto text-center">
                 <small class="tag text-red-500 tracking-wider dark:text-red">APPLICATION</small> 
@@ -142,7 +152,7 @@ function Navbar() {
             <div ref={features} className="m-5 overflow-hidden relative">
                 <div className="rounded-lg bg-light relative  container-lg dark:bg-middle">
                    <img src={require('../images/btc.svg').default} className="w-full h-full object-cover absolute rounded-lg imp hidden md:flex md:visible"/>
-                <div className="lg:h-full">
+                <div className="">
                     <div className="relative lg:m-24 lg:pt-8 ">
                         <div className="grid lg:grid-cols-2 ">
                         <div className="m-10 pt-5">
@@ -286,7 +296,7 @@ function Navbar() {
 
                <div className="rounded-lg bg-light dark:bg-middle relative  container-lg">
                    <img src={require('../images/btc.svg').default} className="w-full h-full object-cover absolute rounded-lg hidden md:flex md:visible"/>
-                <div className="lg:h-full mt-6">
+                <div className="mt-6">
                     <div className="relative lg:m-24 lg:p-10">
                         <div className="grid lg:grid-cols-2 lg:px-5 lg:mt-10">
                         <div className="flex gap-10 m-5  px-4 place-content-between">
@@ -333,7 +343,7 @@ function Navbar() {
 
                <div className="rounded-lg bg-light dark:bg-middle relative container-lg ">
                    <img src={require('../images/btc.svg').default} className="w-full h-full object-cover absolute rounded-lg imp hidden md:flex md:visible"/>
-                    <div className="lg:h-full mb-5 mt-6">
+                    <div className="mb-5 mt-6">
                         <div className="relative lg:m-24 lg:pt-8">
                             <div className="grid lg:grid-cols-2">
                             <div className="m-10 pt-5">
@@ -420,15 +430,15 @@ function Navbar() {
                         <h1 className="mx-2 text-2xl lg:text-3xl text-black pt-5 lg:text-center lg:pt-10 dark:text-light">Tokenomics</h1>
                         <p className="text-gray-500 mx-2 mt-2 lg:mt-4 mb-3 lg:text-center dark:text-gray">Within the sale period, there is no tax implementation. This will start only after an AMM listing. All unsold tokens will be burned.</p>
                         <div class="grid lg:grid-cols-3 gap-5 pt-5">
-                            <div class="bg-white dark:bg-body dark:text-white rounded p-5 text-lg lg:mb-10">
+                            <div class="bg-white dark:bg-body dark:text-white rounded p-5 text-lg lg:mb-10"data-aos="fade-up">
                                 <h6>0.5% Burn</h6>
                                 <p class="mb-0 text-sm dark:text-gray">For every transaction, 0.5% will be burned to increase the value of your tokens. Burning will stop at 21M tokens.</p>
                             </div> 
-                                <div class="bg-white dark:bg-body dark:text-white rounded p-5 text-lg lg:mb-10">
+                                <div class="bg-white dark:bg-body dark:text-white rounded p-5 text-lg lg:mb-10"data-aos="fade-up">
                                     <h6>0.5% Eco-vault</h6> 
                                     <p class="mb-0 text-sm dark:text-gray">0.5% of every transaction goes into our eco-vault that we will use for rewards.</p>
                                 </div> 
-                                    <div class="bg-white dark:bg-body dark:text-white rounded p-5 text-lg lg:mb-10 mb-10">
+                                    <div class="bg-white dark:bg-body dark:text-white rounded p-5 text-lg lg:mb-5 mb-10"data-aos="fade-up">
                                         <h6>80% Ad-Revenue Buyback</h6> 
                                         <p class="mb-0 text-sm dark:text-gray">We are allocating 80% of ad-revenue profits back into the Cointools coin.</p>
                                     </div>
@@ -450,58 +460,58 @@ function Navbar() {
                         </div>
 
                         <div className="flex m-4 mt-4">
-                            <p className="text-xl text-blue-500 dark:text-white"><i class="fa-solid fa-signs-post"></i></p>
+                         <p className="text-xl text-blue-500 dark:text-white"><i class="fa-solid fa-signs-post"></i></p>
                         <h1 className="text-blue-500 text-xl mx-3 dark:text-white">Q1 - 2021</h1> 
                         </div>
                         <div class="grid md:grid-cols-3 gap-4">
                         
-                            <div class="shadow text-left bg-white dark:bg-body rounded p-5 flex items-center m-3 ">
+                            <div class="shadow text-left bg-white dark:bg-body rounded p-5 flex items-center m-3 "data-aos="fade-up">
                             <div>
                                 <h4 class="mb-0 dark:text-white">New website</h4>
                                 <p class="mb-0 mt-2 text-gray text-sm">Launch branding for product</p>
                             </div>
                             </div>
-                            <div class="shadow text-left bg-white dark:text-white dark:bg-body rounded p-5 flex items-center m-3">
+                            <div class="shadow text-left bg-white dark:text-white dark:bg-body rounded p-5 flex items-center m-3"data-aos="fade-up">
                                 <div>
                                     <h4 class="mb-0">Token Sale</h4> 
                                     <p class="mb-0 mt-2 text-sm text-gray">Seed &amp; Public Sales, see tokenomics</p>
                                 </div>
                             </div>
-                            <div class="dark:bg-body shadow text-left bg-white  dark:text-white rounded p-5 flex items-center m-3">
+                            <div class="dark:bg-body shadow text-left bg-white  dark:text-white rounded p-5 flex items-center m-3"data-aos="fade-up">
                                 <div>
                                     <h4 class="mb-0">Basic demo</h4> 
                                     <p class="mb-0 mt-2 text-sm text-gray">Provide a public demo so you can test Cointools</p>
                                 </div>
                             </div>
-                            <div class="dark:bg-body shadow text-left bg-white dark:text-white rounded p-5 flex items-center m-3">
+                            <div class="dark:bg-body shadow text-left bg-white dark:text-white rounded p-5 flex items-center m-3" data-aos="fade-up">
                                 <div>
                                     <h4 class="mb-0">Closed beta group</h4> 
                                     <p class="mb-0 mt-2 text-sm text-gray">Early testers for the app</p>
                                 </div>
                             </div>
-                            <div class="dark:bg-body shadow text-left bg-white dark:text-white rounded p-5 flex items-center m-3">
+                            <div class="dark:bg-body shadow text-left bg-white dark:text-white rounded p-5 flex items-center m-3"data-aos="fade-up">
                                     <div>
                                         <h4 class="mb-0">PancakeSwap Listing</h4> 
                                         <p class="mb-0 mt-2 text-sm text-gray">12% of total supply will be added as liquidity</p>
                                         </div>
                             </div>
-                            <div class="dark:bg-body shadow text-left bg-white dark:text-white rounded p-5 flex items-center m-3">
+                            <div class="dark:bg-body shadow text-left bg-white dark:text-white rounded p-5 flex items-center m-3"data-aos="fade-up">
                                         <div>
                                             <h4 class="mb-0">Listing on Coingecko</h4> 
                                         </div>
                             </div>
-                            <div class="dark:bg-body shadow text-left bg-white dark:text-white rounded p-5 flex items-center m-3">
+                            <div class="dark:bg-body shadow text-left bg-white dark:text-white rounded p-5 flex items-center m-3"data-aos="fade-up">
                                                 <div>
                                                     <h4 class="mb-0">Listing on Coinmarketcap</h4>
                                                 </div>
                             </div>
-                            <div class="dark:bg-body shadow text-left bg-white dark:text-white rounded p-5 flex items-center m-3">
+                            <div class="dark:bg-body shadow text-left bg-white dark:text-white rounded p-5 flex items-center m-3"data-aos="fade-up">
                             <div>
                                 <h4 class="mb-0">Marketing campaign</h4> 
                                 <p class="mb-0 mt-2 text-sm text-gray">We will start our marketing listing</p>
                             </div>
                             </div>
-                        <div class="dark:bg-body shadow text-left bg-white dark:text-white rounded p-5 flex items-center m-3">
+                        <div class="dark:bg-body shadow text-left bg-white dark:text-white rounded p-5 flex items-center m-3"data-aos="fade-up">
                         <div>
                             <h4 class="mb-0">Contract Audit</h4>
                             <p class="mb-0 mt-2 text-sm text-gray">Our contract will get audited by TBD</p>
@@ -520,43 +530,43 @@ function Navbar() {
                                 <p class="mb-0 mt-2 text-sm text-gray">The BETA version of our app goes public</p>
                             </div>
                         </div>
-                        <div class="shadow-lg text-left bg-white dark:bg-body dark:text-white rounded p-5 flex items-center m-3">
+                        <div class="shadow-lg text-left bg-white dark:bg-body dark:text-white rounded p-5 flex items-center m-3"data-aos="fade-up">
                         <div>
                             <h4 class="mb-0">Submit your own coin</h4>
                                 <p class="mb-0 mt-2 text-sm text-gray">New coin submission</p>
                         </div>
                         </div>
-                        <div class="shadow-lg text-left bg-white dark:bg-body dark:text-white rounded p-5 flex items-center m-3">
+                        <div class="shadow-lg text-left bg-white dark:bg-body dark:text-white rounded p-5 flex items-center m-3"data-aos="fade-up">
                             <div>
                                 <h4 class="mb-0">All core concept features</h4> 
                                 <p class="mb-0 mt-2 text-sm text-gray">Cointools proof of concept</p>
                             </div>
                         </div>
-                        <div class="shadow-lg text-left bg-white dark:bg-body dark:text-white rounded p-5 flex items-center m-3">
+                        <div class="shadow-lg text-left bg-white dark:bg-body dark:text-white rounded p-5 flex items-center m-3"data-aos="fade-up">
                             <div>
                                 <h4 class="mb-0">Multi-network profiles</h4>
                                 <p class="mb-0 mt-2 text-sm text-gray">Track on ETH &amp; BSC Networks</p>
                             </div>
                         </div>
-                        <div class="shadow-lg text-left bg-white dark:bg-body dark:text-white rounded p-5 flex items-center m-3">
+                        <div class="shadow-lg text-left bg-white dark:bg-body dark:text-white rounded p-5 flex items-center m-3"data-aos="fade-up">
                             <div>
                                 <h4 class="mb-0">Buyback integration</h4>
                                 <p class="mb-0 mt-2 text-sm text-gray">Start seeing your rewards from holding our coin</p>
                             </div>
                         </div>
-                        <div class="shadow-lg text-left bg-white dark:bg-body dark:text-white rounded p-5 flex items-center m-3">
+                        <div class="shadow-lg text-left bg-white dark:bg-body dark:text-white rounded p-5 flex items-center m-3"data-aos="fade-up">
                             <div>
                                 <h4 class="mb-0">Learning Pad</h4>
                                 <p class="mb-0 mt-2 text-sm text-gray">Community learning centre for crypto currencies and tokens</p>
                             </div>
                         </div>
-                        <div class="shadow-lg text-left bg-white dark:bg-body dark:text-white rounded p-5 flex items-center m-3">
+                        <div class="shadow-lg text-left bg-white dark:bg-body dark:text-white rounded p-5 flex items-center m-3"data-aos="fade-up">
                             <div>
                                 <h4 class="mb-0">Accounts</h4> 
                                 <p class="mb-0 mt-2 text-sm text-gray">Start customising your experience even more with accounts</p>
                             </div>
                         </div>
-                        <div class="shadow-lg text-left bg-white dark:bg-body dark:text-white rounded p-5 flex items-center m-3">
+                        <div class="shadow-lg text-left bg-white dark:bg-body dark:text-white rounded p-5 flex items-center m-3"data-aos="fade-up">
                             <div>
                                 <h4 class="mb-0">UX/UI Review</h4> 
                                 <p class="mb-0 mt-2 text-sm text-gray">Refinement of user experience</p>
@@ -569,20 +579,20 @@ function Navbar() {
                         <h1 className="text-blue-500 text-xl mx-3">Q3 - 2021</h1> 
                         </div>
 
-                    <div class="grid md:grid-cols-3 gap-4 dark:text-white">
-                        <div class="shadow-lg text-left bg-white dark:bg-body rounded p-5 flex items-center m-3 lg:mb-10">
+                        <div class="grid md:grid-cols-3 gap-4 dark:text-white">
+                        <div class="shadow-lg text-left bg-white dark:bg-body rounded p-5 flex items-center m-3 lg:mb-10"data-aos="fade-up">
                             <div>
                                 <h4 class="mb-0">Omnichain Support</h4> 
                                 <p class="mb-0 mt-2 text-sm text-gray">Added support for all blockchains (TBD)</p>
                             </div>
                         </div>
-                        <div class="shadow-lg text-left bg-white dark:bg-body rounded p-5 flex items-center m-3 lg:mb-10">
+                        <div class="shadow-lg text-left bg-white dark:bg-body rounded p-5 flex items-center m-3 lg:mb-10"data-aos="fade-up">
                             <div>
                                 <h4 class="mb-0">Learning Enhancements</h4>
                                 <p class="mb-0 mt-2 text-sm text-gray">Partnerships to promote</p>
                             </div>
                         </div>
-                        <div class="shadow-lg text-left bg-white dark:bg-body rounded p-5 flex items-center m-3 lg:mb-10">
+                        <div class="shadow-lg text-left bg-white dark:bg-body rounded p-5 flex items-center m-3 lg:mb-10"data-aos="fade-up">
                             <div>
                                 <h4 class="mb-0">Price Alerts</h4>
                                 <p class="mb-0 mt-2 text-sm text-gray">Get alerts on events for your tracked coins</p>
@@ -593,17 +603,19 @@ function Navbar() {
                </div>
             </div>    
 
-             <div  className="container-lg text-center bg-blue m-5 rounded-lg lg:h-64 h-40">
+            <div  className="container-lg text-center bg-blue m-5 rounded-lg lg:h-64 h-40">
                 <div className="p-10 lg:p-20">
                 <h3 className="text-white text-center text-xl">You're early, want to find out how to get access in the sale?</h3>
                <div className=" text-center">
-               <a href="#"><button className="bg-white  text-blue rounded-lg py-2 px-5 mt-4 mb-3 mx-2">Ask in telegram</button></a> 
-               <a href="#"><button className="bg-white  text-blue  rounded-lg py-2 px-5 mt-4 mb-3 mx-2">Direct email</button></a>
+                    <a href="#"><button className="bg-white  text-blue rounded-lg py-2 px-5 mt-4 mb-3 mx-2">Ask in telegram</button></a> 
+                    <a href="#"><button className="bg-white  text-blue  rounded-lg py-2 px-5 mt-4 mb-3 mx-2">Direct email</button></a>
                 </div> 
                 </div>
-              
-  
-            </div>    
+            
+
+            </div> 
+
+            
 
                     
        

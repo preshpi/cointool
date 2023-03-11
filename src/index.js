@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { ThemeProvider } from './components/themeContext';
-import Navbar from './components/Navbar';
+import Navbar from './components/home';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
@@ -11,7 +11,7 @@ ReactDOM.render(
     <ThemeProvider>
       <body className="bg-white dark:bg-black transition-all">
         <main>
-          <div  className="absolute w-full right-0 top-0">
+          <div className="absolute w-full right-0 top-0">
             <Navbar />
           </div>
           <App />
